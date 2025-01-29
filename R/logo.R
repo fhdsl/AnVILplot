@@ -13,6 +13,7 @@
 #'  Greater values result in downward shifting, smaller values result in an upward shifting
 #' @param height_unit Numeric value specifying height
 #' @param width_unit Numeric value specifying width
+#' @param full_logo Bool; default is TRUE. If TRUE, will use the full logo; if FALSE, will use the image of an anvil only
 #' 
 #' @return a list with ggplot2 components: `annotation_custom()`, `coord_cartesian()`, `theme()`
 #' @export

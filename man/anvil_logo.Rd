@@ -22,6 +22,8 @@ Greater values result in downward shifting, smaller values result in an upward s
 \item{height_unit}{Numeric value specifying height}
 
 \item{width_unit}{Numeric value specifying width}
+
+\item{full_logo}{Bool; default is TRUE. If TRUE, will use the full logo; if FALSE, will use the image of an anvil only}
 }
 \value{
 a list with ggplot2 components: \code{annotation_custom()}, \code{coord_cartesian()}, \code{theme()}
