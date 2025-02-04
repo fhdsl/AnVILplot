@@ -114,8 +114,8 @@ plot(anvil_palette_single)
 ```{r}
 ggplot(diamonds[sample(nrow(diamonds), 1000), ], aes(carat, price)) +
 geom_point(aes(colour = cut)) +
-scale_colour_palette_d(anvil_palette_sequential$yellow) +
-anvil_logo()
+scale_colour_palette_d(anvil_palette_sequential$yellow) #+
+#anvil_logo()
 
 ```
 
