@@ -19,9 +19,9 @@ Higher values shift towards the right, lower values shift towards the left}
 \item{y_unit}{Numeric value indicating the amount of vertical shifting.
 Greater values result in downward shifting, smaller values result in an upward shifting}
 
-\item{height_unit}{Numeric value specifying height}
+\item{height_unit}{Numeric value specifying height (size of the logo), in pts. Might warp logo if not adjusted together with width_unit properly}
 
-\item{width_unit}{Numeric value specifying width}
+\item{width_unit}{Numeric value specifying width (size of the logo), in pts. Might warp logo if not adjusted together with height_unit properly}
 
 \item{full_logo}{Bool; default is TRUE. If TRUE, will use the full logo; if FALSE, will use the image of an anvil only}
 }
