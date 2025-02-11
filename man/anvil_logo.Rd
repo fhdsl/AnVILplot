@@ -8,7 +8,7 @@ anvil_logo(
   x_unit = 25,
   y_unit = 10,
   height_unit = 12,
-  width_unit = NULL,
+  width_unit = 36,
   full_logo = TRUE
 )
 }
@@ -44,7 +44,7 @@ library(ggplot2)
 ggplot(diamonds[sample(nrow(diamonds), 1000), ], aes(carat, price)) +
 geom_point(aes(colour = color)) +
 scale_colour_palette_d(anvil_palette_sequential$yellow) +
-anvil_logo(x_unit = 25, y_unit = 10, full_logo = FALSE)
+anvil_logo(x_unit = 25, y_unit = 10, width_unit = 18, full_logo = FALSE)
 }
 
 }

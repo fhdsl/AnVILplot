@@ -1,42 +1,42 @@
 #' Add AnVIL logo to plot
-#' 
+#'
 #' Logo placed at the bottom right corner of a ggplot
-#' 
+#'
 #' Adapted from
 #' https://www.markhw.com/blog/logos
 #' https://stackoverflow.com/q/76354700/14804653
 #' https://github.com/FredHutch/hutchplot
-#' 
-#' @param x_unit Numeric value indiciating the amount of horizontal shifting 
+#'
+#' @param x_unit Numeric value indiciating the amount of horizontal shifting
 #'  Higher values shift towards the right, lower values shift towards the left
 #' @param y_unit Numeric value indicating the amount of vertical shifting.
 #'  Greater values result in downward shifting, smaller values result in an upward shifting
 #' @param height_unit Numeric value specifying height
 #' @param width_unit Numeric value specifying width
 #' @param full_logo Bool; default is TRUE. If TRUE, will use the full logo; if FALSE, will use the image of an anvil only
-#' 
+#'
 #' @return a list with ggplot2 components: `annotation_custom()`, `coord_cartesian()`, `theme()`
 #' @export
-#' 
+#'
 #' @examples
 #' \dontrun{
 #' library(ggplot2)
-#' 
+#'
 #' ggplot(diamonds[sample(nrow(diamonds), 1000), ], aes(carat, price)) +
 #' geom_point(aes(colour = color)) +
 #' scale_colour_palette_d(anvil_palette_sequential$yellow) +
-#' anvil_logo(x_unit = 25, y_unit = 10, full_logo = FALSE)
+#' anvil_logo(x_unit = 25, y_unit = 10, width_unit = 18, full_logo = FALSE)
 #' }
-#' 
-anvil_logo <- function(x_unit = 25, y_unit = 10, 
-                       height_unit = 12, width_unit = NULL,
+#'
+anvil_logo <- function(x_unit = 25, y_unit = 10,
+                       height_unit = 12, width_unit = 36,
                        full_logo = TRUE){
   if (full_logo){
     filename <- "logo-anvil.png"
   } else{
     filename <- "logo-anvil-only.png"
   }
-  
+
   list(
     ggplot2::annotation_custom(render_png(system.file("logo", filename, package = "AnVILplot"),
                                           x_unit, y_unit,
@@ -60,7 +60,7 @@ render_png <- function(file_name,
                    y = grid::unit(0, "npc") - grid::unit(y_unit, "pt"),
                    # Adjust image size
                    height = grid::unit(height_unit, "pt"),
-                   width = NULL,
+                   width = grid::unit(width_unit, "pt"),
                    hjust = 1,
                    vjust = 1
   )
