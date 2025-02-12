@@ -17,7 +17,7 @@ This package can be installed from GitHub using the `devtools`
 ``` r
 devtools::install_github("fhdsl/AnVILplot")
 #> Using GitHub PAT from the git credential store.
-#> Skipping install of 'AnVILplot' from a github remote, the SHA1 (b86f51d0) has not changed since last install.
+#> Skipping install of 'AnVILplot' from a github remote, the SHA1 (1ab517a5) has not changed since last install.
 #>   Use `force = TRUE` to force installation
 ```
 
@@ -38,6 +38,27 @@ Logos are added to the bottom right of a ggplot.
 You can choose between two logos. One is the full AnVIL logo (default,
 or use argument `full_logo = TRUE`), and the other is just the image of
 an anvil (use argument `full_logo = FALSE`).
+
+<details>
+<summary>
+Logo placement and sizing
+</summary>
+
+*Logo placement*
+
+The logo by default is placed on the bottom right of the plot. Use the
+`x_unit` and `y_unit` arguments to shift the logo placement.
+
+*Logo sizing*
+
+The defaults for logo width and height are preset to work with the full
+logo. Adjust the width parameter to be 18 pts as shown in the example at
+the end of the README.
+
+Note that you may have to adjust both the `height_unit` and `width_unit`
+arguments to avoid warping the logo/aspect ratio.
+
+</details>
 
 ### Palettes Available
 
@@ -128,14 +149,48 @@ plot(anvil_palette_single)
 
 ## Example Usage
 
+This base plot uses default coloring (viridis).
+
 ``` r
-ggplot(diamonds[sample(nrow(diamonds), 1000), ], aes(carat, price)) +
-geom_point(aes(colour = cut)) +
-scale_colour_palette_d(anvil_palette_sequential$yellow) #+
+base_plot <- ggplot(diamonds[sample(nrow(diamonds), 1000), ], 
+                    aes(carat, price)) +
+             geom_point(aes(colour = cut))
+
+base_plot
 ```
 
 <img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" />
 
+We can use an AnVIL palette to recolor the graph as shown below. This
+sequential palette works with the idea of the “cut” ranging from Fair to
+Ideal.
+
 ``` r
-#anvil_logo()
+base_plot +
+  scale_colour_palette_d(anvil_palette_sequential$yellow)
 ```
+
+<img src="man/figures/README-unnamed-chunk-13-1.png" width="100%" />
+
+We can also add the AnVIL logo to the bottom right of the plot. By
+default, it uses the full AnVIL logo (anvil icon and name).
+
+``` r
+base_plot +
+  scale_colour_palette_d(anvil_palette_sequential$yellow) +
+  anvil_logo()
+```
+
+<img src="man/figures/README-unnamed-chunk-14-1.png" width="100%" />
+
+To use a simplified logo (just the AnVIL icon w/o the name), set
+`full_logo = FALSE` and adjust the `width_unit` argument. 18pt works
+with the default height.
+
+``` r
+base_plot +
+  scale_colour_palette_d(anvil_palette_sequential$yellow) +
+  anvil_logo(full_logo = FALSE, width_unit = 18)
+```
+
+<img src="man/figures/README-unnamed-chunk-15-1.png" width="100%" />
